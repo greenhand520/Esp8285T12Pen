@@ -11,9 +11,8 @@
 
 class Display {
 private:
-    U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C driver = nullptr;
-//    bool rotate = false;
-//    uint8_t brightness;
+//    U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C driver = nullptr;
+    U8G2_SH1107_64X128_F_HW_I2C driver = nullptr;
     UIData uiData;
 
 public:
@@ -24,7 +23,7 @@ public:
      * @param sdaPin
      * @param sclPin
      */
-    Display(bool isRotate, uint8_t brightness, uint8_t sdaPin, uint8_t sclPin);
+    Display(bool isRotate, uint8_t brightness, uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin);
 
     /**
      * 从UIdata中取数据更新屏幕
@@ -34,11 +33,12 @@ public:
 
     void setRotate(bool isRotate);
 
-//    bool isRotate() const;
-//
-//    uint8_t getBrightness() const;
-
     void setBrightness(uint8_t brightness);
+
+    /**
+     * 刷新屏幕
+     */
+    void refresh();
 };
 
 #endif //ESP8285HEAT_DISPLAY_H

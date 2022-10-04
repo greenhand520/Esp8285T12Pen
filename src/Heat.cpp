@@ -50,8 +50,6 @@ void Heat::loop() {
             break;
     }
 
-    // todo:更新屏幕
-
 
     buzz->play();
 

@@ -28,9 +28,12 @@ public:
 
     void setup();
 
+    /**
+     * 更新UIData 控制蜂鸣器 温度检测 温控 按键检测
+     */
     void loop();
 
-    const UIData &getUiData() const;
+    [[nodiscard]] const UIData &getUiData() const;
 };
 
 #endif //ESP8285HEAT_HEAT_H

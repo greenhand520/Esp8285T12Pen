@@ -12,14 +12,15 @@
 #define SCL_PIN 9
 #define HEAT_PWM_PIN 10
 #define PREVIOUS_BTU_PIN 11
+#define NEXT_BTU_PIN 12
 #define SDA_PIN 13
-#define NEXT_BTU_PIN 14
+#define RESET_PIN 14
 #define SHOCK_PIN 15
 #define BUZZ_PIN 16
 
-StopEvent *shockStopEvent =  new ShockStopEvent(SHOCK_PIN, HIGH);
+StopEvent *shockStopEvent = new ShockStopEvent(SHOCK_PIN, HIGH);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
-Display display = Display(false, 5, SDA_PIN, SCL_PIN);
+Display display = Display(false, 5, SDA_PIN, SCL_PIN, RESET_PIN);
 Heat heat = Heat(BUZZ_PIN, HEAT_PWM_PIN,
                  twoButtonCtrl,
                  shockStopEvent,
