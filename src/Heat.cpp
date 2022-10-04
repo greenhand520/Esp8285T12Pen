@@ -4,22 +4,19 @@
 #include "Heat.h"
 
 
-Heat::Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm) {
+Heat::Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm, Buzz buzz) {
     this->ctrl = &c;
     this->stopEvent = &se;
     this->tempMeasure = &tm;
+    this->buzz = &buzz;
     this->storage = Storage();
     this->tempCtrler = TempCtrler(pwmPin);
 
     storage.loadSettings();
 }
 
-/**
- * 添加已经初始化的蜂鸣器
- * @param _buzz
- */
-void Heat::setBuzz(Buzz *_buzz) {
-    Heat::buzz = _buzz;
+void Heat::setup() {
+    ctrl->attachButtonInterrupt();
 }
 
 void Heat::loop() {
@@ -35,24 +32,16 @@ void Heat::loop() {
     CtrlType ct = ctrl->popCtrl();
     switch (ct) {
         case PREVIOUS:
-            if (buzz != nullptr) {
-                buzz->setMelody(ClickMelody);
-            }
+            buzz->setMelody(ClickMelody);
             break;
         case NEXT:
-            if (buzz != nullptr) {
-                buzz->setMelody(ClickMelody);
-            }
+            buzz->setMelody(ClickMelody);
             break;
         case MENU:
-            if (buzz != nullptr) {
-                buzz->setMelody(MMenuClickedMelody);
-            }
+            buzz->setMelody(MMenuClickedMelody);
             break;
         case CONFIRM:
-            if (buzz != nullptr) {
-                buzz->setMelody(ConfirmClickedMelody);
-            }
+            buzz->setMelody(ConfirmClickedMelody);
             break;
         default:
             break;

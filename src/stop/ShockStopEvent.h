@@ -18,8 +18,6 @@ public:
     ShockStopEvent(uint8_t interruptPin, uint8_t interruptMode);
 
     void stop() override;
-
-    ShockStopEvent(int shockPin, int interruptMode);
 };
 
 #endif //ESP8285HEAT_SHOCKEVENT_H

@@ -6,6 +6,8 @@
 #ifndef ESPHEAT_TEMPMEASURE_H
 #define ESPHEAT_TEMPMEASURE_H
 
+#include "Arduino.h"
+
 class TempMeasure {
 
 };

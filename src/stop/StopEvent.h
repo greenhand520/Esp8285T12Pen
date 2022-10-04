@@ -38,7 +38,7 @@ public:
     /**
      * 被中断函数调用 根据情况修改stopFlag的值
      */
-    virtual void stop() = 0;
+    virtual void stop();
 
 };
 

@@ -5,15 +5,15 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEAT_THREEBUTTONCTRL_H
-#define ARDUINOESPHEAT_THREEBUTTONCTRL_H
+#ifndef ARDUINOESPHEAT_TWOBUTTONCTRL_H
+#define ARDUINOESPHEAT_TWOBUTTONCTRL_H
 
 #include "Ctrl.h"
 
 class TwoButtonCtrl : public Ctrl {
 private:
-    uint8_t previousButPin;
-    uint8_t nextButPin;
+//    uint8_t previousButPin;
+//    uint8_t nextButPin;
     OneButton previousBut;
     OneButton nextBut;
 
@@ -26,4 +26,4 @@ public:
 extern TwoButtonCtrl twoButtonCtrl;
 
 
-#endif //ARDUINOESPHEAT_THREEBUTTONCTRL_H
+#endif //ARDUINOESPHEAT_TWOBUTTONCTRL_H

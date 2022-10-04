@@ -4,8 +4,7 @@
 
 #include "TwoButtonCtrl.h"
 
-TwoButtonCtrl::TwoButtonCtrl(uint8_t previousButPin, uint8_t nextButPin) : previousButPin(previousButPin),
-                                                                           nextButPin(nextButPin) {
+TwoButtonCtrl::TwoButtonCtrl(uint8_t previousButPin, uint8_t nextButPin) {
     pinMode(previousButPin, INPUT_PULLUP);
     pinMode(nextButPin, INPUT_PULLUP);
 

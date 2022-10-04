@@ -24,9 +24,9 @@ private:
     TempCtrler tempCtrler = NULL;
     UIData uiData;
 public:
-    Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm);
+    Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm, Buzz buzz);
 
-    void setBuzz(Buzz *buzz);
+    void setup();
 
     void loop();
 };
