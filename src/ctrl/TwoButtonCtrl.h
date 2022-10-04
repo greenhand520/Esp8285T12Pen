@@ -23,7 +23,7 @@ public:
     void attachButtonInterrupt() override;
 };
 
-extern TwoButtonCtrl twoButtonCtrl;
+extern Ctrl *twoButtonCtrl;
 
 
 #endif //ARDUINOESPHEAT_TWOBUTTONCTRL_H

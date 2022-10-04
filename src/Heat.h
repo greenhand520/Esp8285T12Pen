@@ -22,9 +22,9 @@ private:
     TempMeasure *tempMeasure;
     Storage storage;
     TempCtrler tempCtrler = NULL;
-    UIData uiData;
+    UIData uiData{};
 public:
-    Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm, Buzz buzz);
+    Heat(uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, Buzz *buzz);
 
     void setup();
 

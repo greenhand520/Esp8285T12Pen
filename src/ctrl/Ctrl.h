@@ -44,7 +44,7 @@ public:
     /**
      * 添加中断
      */
-    virtual void attachButtonInterrupt();
+    virtual void attachButtonInterrupt() = 0;
 };
 
 #endif //ARDUINOESPHEAT_CTRL_H

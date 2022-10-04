@@ -4,11 +4,11 @@
 #include "Heat.h"
 
 
-Heat::Heat(uint8_t pwmPin, Ctrl c, StopEvent se, TempMeasure tm, Buzz buzz) {
-    this->ctrl = &c;
-    this->stopEvent = &se;
-    this->tempMeasure = &tm;
-    this->buzz = &buzz;
+Heat::Heat(uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, Buzz *buzz) {
+    this->ctrl = c;
+    this->stopEvent = se;
+    this->tempMeasure = tm;
+    this->buzz = buzz;
     this->storage = Storage();
     this->tempCtrler = TempCtrler(pwmPin);
 

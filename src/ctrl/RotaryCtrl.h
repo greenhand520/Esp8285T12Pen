@@ -28,7 +28,7 @@ public:
     void attachButtonInterrupt() override;
 };
 
-extern RotaryCtrl rotaryCtrl;
+extern RotaryCtrl *rotaryCtrl;
 
 
 #endif //ARDUINOESPHEAT_ROTARYCTRL_H

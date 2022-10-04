@@ -18,13 +18,13 @@ RotaryCtrl::RotaryCtrl(uint8_t buttonPin, uint8_t aOutPin, uint8_t bOutPin) : bu
 
 void RotaryCtrl::attachButtonInterrupt() {
     button.attachClick([]() {
-        rotaryCtrl.pushCtrl(CONFIRM);
+        rotaryCtrl->pushCtrl(CONFIRM);
     });
     button.attachDoubleClick([]() {
-        rotaryCtrl.pushCtrl(BACK);
+        rotaryCtrl->pushCtrl(BACK);
     });
     button.attachLongPressStop([]() {
-        rotaryCtrl.pushCtrl(MENU);
+        rotaryCtrl->pushCtrl(MENU);
     });
 
 //    attachButtonInterrupt(aOutPin, []() {

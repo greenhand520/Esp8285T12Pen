@@ -24,23 +24,23 @@ TwoButtonCtrl::TwoButtonCtrl(uint8_t previousButPin, uint8_t nextButPin) {
 
 void TwoButtonCtrl::attachButtonInterrupt() {
     previousBut.attachClick([]() {
-        twoButtonCtrl.pushCtrl(PREVIOUS);
+        twoButtonCtrl->pushCtrl(PREVIOUS);
     });
     previousBut.attachDoubleClick([]() {
-        twoButtonCtrl.pushCtrl(CONFIRM);
+        twoButtonCtrl->pushCtrl(CONFIRM);
     });
     previousBut.attachLongPressStop([]() {
-        twoButtonCtrl.pushCtrl(BACK);
+        twoButtonCtrl->pushCtrl(BACK);
     });
 
     nextBut.attachClick([]() {
-        twoButtonCtrl.pushCtrl(NEXT);
+        twoButtonCtrl->pushCtrl(NEXT);
     });
     nextBut.attachDoubleClick([]() {
-        twoButtonCtrl.pushCtrl(CONFIRM);
+        twoButtonCtrl->pushCtrl(CONFIRM);
     });
     nextBut.attachLongPressStop([]() {
-        twoButtonCtrl.pushCtrl(MENU);
+        twoButtonCtrl->pushCtrl(MENU);
     });
 
 }
