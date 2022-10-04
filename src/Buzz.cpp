@@ -5,6 +5,12 @@
 
 #include "Buzz.h"
 
+Buzz::Buzz(uint8_t pin, uint8_t _volume) : pin(pin) {
+    this->volume = constrain(_volume, 0, 10);
+    pinMode(pin, OUTPUT);
+    analogWrite(pin, volume);
+    analogWriteRange(this->volume * 10);
+}
 
 void Buzz::setMelody(Tone _melody[]) {
     this->playingMelody = _melody;
@@ -36,43 +42,6 @@ void IRAM_ATTR Buzz::play() {
     }
 }
 
-void Buzz::init(uint8_t _volume, uint8_t _pin) {
-    this->pin = _pin;
-    setVolume(_volume);
-    pinMode(_pin, OUTPUT);
-    analogWrite(_pin, 0);
-    analogWriteRange(this->volume * 10);
-
-    setBootMelody(BootMelody);
-    setDormancyMelody(DormancyMelody);
-    setClickMelody(ClickMelody);
-    setDoubleClickMelody(DoubleClickMelody);
-    setLongPressMelody(longPressMelody);
-}
-
-// 额外修改音效
-void Buzz::setBootMelody(Tone *bootMelody) {
-    Buzz::bootMeloy = bootMelody;
-}
-
-void Buzz::setDormancyMelody(Tone *dormancyMelody) {
-    Buzz::dormancyMelody = dormancyMelody;
-}
-
-void Buzz::setClickMelody(Tone *clickMelody) {
-    Buzz::clickMelody = clickMelody;
-}
-
-void Buzz::setDoubleClickMelody(Tone *doubleClickMelody) {
-    Buzz::doubleClickMelody = doubleClickMelody;
-}
-
-void Buzz::setLongPressMelody(Tone *longPressMelody) {
-    Buzz::longPressMelody = longPressMelody;
-}
-
-Buzz::Buzz() {}
-
 // 所有的音效最后一个音符都要是NOTE_NONE
 Tone BootMelody[] = {
         {NOTE_D4,   230},
@@ -95,13 +64,13 @@ Tone ClickMelody[] = {
         {NOTE_NONE, 0},
 };
 // 双击音效
-Tone DoubleClickMelody[] = {
+Tone ConfirmClickedMelody[] = {
         {NOTE_E4,   100},
         {NOTE_G4,   100},
         {NOTE_NONE, 0},
 };
 
-Tone LongPressMelody[] = {
+Tone MMenuClickedMelody[] = {
         {NOTE_E4,   200},
         {NOTE_NONE, 0},
 };

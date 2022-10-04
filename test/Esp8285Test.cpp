@@ -3,31 +3,28 @@
 //
 
 #include <Arduino.h>
-#include "HeatFramework.h"
+#include "Heat.h"
 #include "stop/ShockStopEvent.h"
 #include "ctrl/TwoButtonCtrl.h"
 
 #define TEMP_ADC_PIN 6
 #define SCL_PIN 9
 #define HEAT_PWM_PIN 10
-#define BACK_BTU_PIN 11
+#define PREVIOUS_BTU_PIN 11
 #define SDA_PIN 13
-#define FORWARD_BTU_PIN 14
+#define NEXT_BTU_PIN 14
 #define SHOCK_PIN 15
 #define BUZZ_PIN 16
 
-HeatFramework hf = HeatFramework();
-ShockStopEvent shockStopEvent = ShockStopEvent();
-Buzz buzz = Buzz();
-TwoButtonCtrl twoButtonCtrl = TwoButtonCtrl();
+ShockStopEvent shockStopEvent = ShockStopEvent(SHOCK_PIN, HIGH);
+Buzz buzz = Buzz(BUZZ_PIN, 5);
+TwoButtonCtrl twoButtonCtrl = TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
+TempMeasure tempMeasure = TempMeasure();
+Heat heat = Heat(HEAT_PWM_PIN, twoButtonCtrl, shockStopEvent, tempMeasure);
 
 void setup() {
 
-    buzz.init(5, BUZZ_PIN);
-    hf.init(HEAT_PWM_PIN);
-    hf.setBuzz(&buzz);
-    hf.setCtrl(&twoButtonCtrl);
-    hf.setStopEvent(&shockStopEvent);
+    heat.setBuzz(&buzz);
     // 别忘记添加中断
     attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
         shockStopEvent.stop();

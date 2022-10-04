@@ -4,10 +4,11 @@
 
 #include "TempCtrler.h"
 
-void TempCtrler::init(uint8_t _pwmPin) {
+TempCtrler::TempCtrler(uint8_t _pwmPin) {
     this->pwmPin = _pwmPin;
+    pinMode(pwmPin, OUTPUT);
 }
 
 void TempCtrler::stopHeat() {
-
+    digitalWrite(pwmPin, 0);
 }

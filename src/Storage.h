@@ -2,13 +2,19 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEATFARMWORK_SETTINGS_H
-#define ARDUINOESPHEATFARMWORK_SETTINGS_H
+#ifndef OESPHEAT_SETTINGS_H
+#define OESPHEAT_SETTINGS_H
 
 #include <Arduino.h>
 // Arduino for esp8266 中用的EEPROM其实是从外部flash中存储器最末尾开辟的4096字节空间，
 // 每次操作写入的数据在4~4096字节之间（4字节对齐）；，所以，EEPROM可操作的地址为0~4095。
-#include <ESP_EEPROM.h>
+
+// ESP引入ESP_EEPROM读写EEPROM
+#if (defined(ESP8266)) || (defined(ESP32))
+    #include <ESP_EEPROM.h>
+#else
+    #include <EEPROM.h>
+#endif
 
 
 struct Settings {
@@ -65,4 +71,5 @@ public:
 
     uint8_t getTempStep();
 };
-#endif //ARDUINOESPHEATFARMWORK_SETTINGS_H
+
+#endif //OESPHEAT_SETTINGS_H

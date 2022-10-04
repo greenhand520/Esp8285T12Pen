@@ -2,8 +2,8 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEATFARMWORK_UIDATA_H
-#define ARDUINOESPHEATFARMWORK_UIDATA_H
+#ifndef ESPHEAT_UIDATA_H
+#define ESPHEAT_UIDATA_H
 
 #include <Arduino.h>
 
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif //ARDUINOESPHEATFARMWORK_UIDATA_H
+#endif //ESPHEAT_UIDATA_H

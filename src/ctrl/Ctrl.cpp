@@ -8,7 +8,7 @@ Ctrl::Ctrl() {
     ctrlQueue.front = ctrlQueue.rear = 0;
 }
 
-void Ctrl::addCtrl(CtrlType ct) {
+void Ctrl::pushCtrl(CtrlType ct) {
     if (ctrlQueue.rear < MAX_FIFO_QUEUE_SIZE) {
         // 队列未满
         // 队列末尾添加元素 队尾指针加一
@@ -17,7 +17,7 @@ void Ctrl::addCtrl(CtrlType ct) {
     }
 }
 
-CtrlType Ctrl::removeCtrl() {
+CtrlType Ctrl::popCtrl() {
     if (ctrlQueue.rear != ctrlQueue.front) {
         CtrlType ctrlType = ctrlQueue.data[ctrlQueue.front];
         ctrlQueue.front = (ctrlQueue.front + 1) % MAX_FIFO_QUEUE_SIZE;

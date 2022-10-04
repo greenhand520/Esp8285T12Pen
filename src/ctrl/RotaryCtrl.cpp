@@ -4,28 +4,27 @@
 
 #include "RotaryCtrl.h"
 
-void RotaryCtrl::init(uint8_t _buttonPin, uint8_t _aOutPin, uint8_t _bOutPin) {
-    this->buttonPin = _buttonPin;
+RotaryCtrl::RotaryCtrl(uint8_t buttonPin, uint8_t aOutPin, uint8_t bOutPin) : buttonPin(buttonPin), aOutPin(aOutPin),
+                                                                              bOutPin(bOutPin) {
     pinMode(buttonPin, INPUT_PULLUP);
-    pinMode(_aOutPin, INPUT_PULLUP);
-    pinMode(_bOutPin, INPUT_PULLUP);
+    pinMode(aOutPin, INPUT_PULLUP);
+    pinMode(bOutPin, INPUT_PULLUP);
 
     this->button = OneButton(buttonPin);
     button.setDebounceTicks(25);
     button.setClickTicks(30);
     button.setPressTicks(500);
-
 }
 
 void RotaryCtrl::attachButtonInterrupt() {
     button.attachClick([]() {
-        rotaryCtrl.addCtrl(CONFIRM);
+        rotaryCtrl.pushCtrl(CONFIRM);
     });
     button.attachDoubleClick([]() {
-        rotaryCtrl.addCtrl(BACK);
+        rotaryCtrl.pushCtrl(BACK);
     });
     button.attachLongPressStop([]() {
-        rotaryCtrl.addCtrl(MENU);
+        rotaryCtrl.pushCtrl(MENU);
     });
 
 //    attachButtonInterrupt(aOutPin, []() {

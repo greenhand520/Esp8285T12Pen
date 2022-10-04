@@ -3,8 +3,8 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEATFARMWORK_ROTARYCTRL_H
-#define ARDUINOESPHEATFARMWORK_ROTARYCTRL_H
+#ifndef ARDUINOESPHEAT_ROTARYCTRL_H
+#define ARDUINOESPHEAT_ROTARYCTRL_H
 
 #include "Ctrl.h"
 #include <RotaryEncoder.h>
@@ -22,7 +22,8 @@ private:
     int count;
 
 public:
-    void init(uint8_t _buttonPin, uint8_t _aOutPin, uint8_t _bOutPin);
+
+    RotaryCtrl(uint8_t buttonPin, uint8_t aOutPin, uint8_t bOutPin);
 
     void attachButtonInterrupt() override;
 };
@@ -30,4 +31,4 @@ public:
 extern RotaryCtrl rotaryCtrl;
 
 
-#endif //ARDUINOESPHEATFARMWORK_ROTARYCTRL_H
+#endif //ARDUINOESPHEAT_ROTARYCTRL_H

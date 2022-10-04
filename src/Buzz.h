@@ -3,8 +3,8 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEATFARMWORK_BUZZ_H
-#define ARDUINOESPHEATFARMWORK_BUZZ_H
+#ifndef OESPHEAT_BUZZ_H
+#define OESPHEAT_BUZZ_H
 
 #include <Arduino.h>
 
@@ -48,32 +48,10 @@ private:
     Tone *playingMelody = nullptr;
     // 当前播放到的音符
     uint16_t playingIndex = 0;
-    // 开机音效
-    Tone *bootMeloy = nullptr;
-    // 开始休眠音效
-    Tone *dormancyMelody = nullptr;
-    // 单击音效
-    Tone *clickMelody = nullptr;
-    // 双击音效
-    Tone *doubleClickMelody = nullptr;
-    // 长按音效
-    Tone *longPressMelody = nullptr;
 
 public:
 
-    Buzz();
-
-    void setBootMelody(Tone *bootMelody);
-
-    void setDormancyMelody(Tone *dormancyMelody);
-
-    void setClickMelody(Tone *clickMelody);
-
-    void setDoubleClickMelody(Tone *doubleClickMelody);
-
-    void setLongPressMelody(Tone *longPressMelody);
-
-    void init(uint8_t volume, uint8_t pin);
+    Buzz(uint8_t pin, uint8_t volume);
 
     void setVolume(uint8_t volume);
 
@@ -87,7 +65,7 @@ public:
 extern Tone BootMelody[];
 extern Tone DormancyMelody[];
 extern Tone ClickMelody[];
-extern Tone DoubleClickMelody[];
-extern Tone LongPressMelody[];
+extern Tone ConfirmClickedMelody[];
+extern Tone MMenuClickedMelody[];
 
-#endif //ARDUINOESPHEATFARMWORK_BUZZ_H
+#endif //OESPHEAT_BUZZ_H

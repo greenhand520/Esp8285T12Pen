@@ -3,8 +3,8 @@
 // Created by mdmbct on 10/2/22.
 //
 
-#ifndef ESP8285HEATFARMEWORK_STOPEVENT_H
-#define ESP8285HEATFARMEWORK_STOPEVENT_H
+#ifndef ESP8285HEAT_STOPEVENT_H
+#define ESP8285HEAT_STOPEVENT_H
 
 #include <Arduino.h>
 
@@ -17,6 +17,14 @@ protected:
 
 public:
 
+    /**
+     * 初始化停止加热事件 pin模式设置为输入 内部上拉
+     * @param _interruptPin 触发硬件中断pin
+     * @param _interruptMode 中断模式
+     * @param 端口模式 输入类型 INPUT INPUT_PULLUP INPUT_PULLDOWN_16
+     */
+    StopEvent(uint8_t interruptPin, uint8_t interruptMode);
+
     uint8_t getInterruptPin() const;
 
     uint8_t getInterruptMode() const;
@@ -28,18 +36,10 @@ public:
     bool isStop() const;
 
     /**
-     * 初始化停止加热事件 pin模式设置为输入 内部上拉
-     * @param _interruptPin 触发硬件中断pin
-     * @param _interruptMode 中断模式
-     * @param 端口模式 输入类型 INPUT INPUT_PULLUP INPUT_PULLDOWN_16
-     */
-    virtual void init(uint8_t _interruptPin, uint8_t _interruptMode);
-
-    /**
-     * 中断函数中调用
+     * 被中断函数调用 根据情况修改stopFlag的值
      */
     virtual void stop() = 0;
 
 };
 
-#endif //ESP8285HEATFARMEWORK_STOPEVENT_H
+#endif //ESP8285HEAT_STOPEVENT_H

@@ -3,8 +3,8 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ARDUINOESPHEATFARMWORK_CTRL_H
-#define ARDUINOESPHEATFARMWORK_CTRL_H
+#ifndef ARDUINOESPHEAT_CTRL_H
+#define ARDUINOESPHEAT_CTRL_H
 
 #include <Arduino.h>
 #include <OneButton.h>
@@ -31,12 +31,13 @@ class Ctrl {
 protected:
     // 存储操作的先进先出队列
     CtrlTypeFIFOQueue ctrlQueue{};
+
 public:
     Ctrl();
 
-    void addCtrl(CtrlType ct);
+    void pushCtrl(CtrlType ct);
 
-    CtrlType removeCtrl();
+    CtrlType popCtrl();
 
     void clearCtrlQueue();
 
@@ -46,4 +47,4 @@ public:
     virtual void attachButtonInterrupt() = 0;
 };
 
-#endif //ARDUINOESPHEATFARMWORK_CTRL_H
+#endif //ARDUINOESPHEAT_CTRL_H

@@ -4,12 +4,9 @@
 
 #include "TwoButtonCtrl.h"
 
-TwoButtonCtrl::TwoButtonCtrl() = default;
-
-void TwoButtonCtrl::init(uint8_t _previousButPin, uint8_t _nextButPin) {
-    this->previousButPin = _previousButPin;
+TwoButtonCtrl::TwoButtonCtrl(uint8_t previousButPin, uint8_t nextButPin) : previousButPin(previousButPin),
+                                                                           nextButPin(nextButPin) {
     pinMode(previousButPin, INPUT_PULLUP);
-    this->nextButPin = _nextButPin;
     pinMode(nextButPin, INPUT_PULLUP);
 
     previousBut = OneButton(previousButPin);
@@ -24,28 +21,27 @@ void TwoButtonCtrl::init(uint8_t _previousButPin, uint8_t _nextButPin) {
     nextBut.setDebounceTicks(25);
     nextBut.setClickTicks(30);
     nextBut.setPressTicks(500);
-
 }
 
 void TwoButtonCtrl::attachButtonInterrupt() {
     previousBut.attachClick([]() {
-        twoButtonCtrl.addCtrl(PREVIOUS);
+        twoButtonCtrl.pushCtrl(PREVIOUS);
     });
     previousBut.attachDoubleClick([]() {
-        twoButtonCtrl.addCtrl(CONFIRM);
+        twoButtonCtrl.pushCtrl(CONFIRM);
     });
     previousBut.attachLongPressStop([]() {
-        twoButtonCtrl.addCtrl(BACK);
+        twoButtonCtrl.pushCtrl(BACK);
     });
 
     nextBut.attachClick([]() {
-        twoButtonCtrl.addCtrl(NEXT);
+        twoButtonCtrl.pushCtrl(NEXT);
     });
     nextBut.attachDoubleClick([]() {
-        twoButtonCtrl.addCtrl(CONFIRM);
+        twoButtonCtrl.pushCtrl(CONFIRM);
     });
     nextBut.attachLongPressStop([]() {
-        twoButtonCtrl.addCtrl(MENU);
+        twoButtonCtrl.pushCtrl(MENU);
     });
 
 }
