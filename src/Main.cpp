@@ -19,11 +19,11 @@
 
 StopEvent *shockStopEvent =  new ShockStopEvent(SHOCK_PIN, HIGH);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
-Heat heat = Heat(HEAT_PWM_PIN,
+Display display = Display(false, 5, SDA_PIN, SCL_PIN);
+Heat heat = Heat(BUZZ_PIN, HEAT_PWM_PIN,
                  twoButtonCtrl,
                  shockStopEvent,
-                 new GS8551Measure(TEMP_ADC_PIN),
-                 new Buzz(BUZZ_PIN, 5));
+                 new GS8551Measure(TEMP_ADC_PIN), 5);
 
 void setup() {
     noInterrupts();
@@ -32,6 +32,7 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
         shockStopEvent->stop();
     }, LOW);
+    display.init(heat.getUiData());
     interrupts();
 }
 

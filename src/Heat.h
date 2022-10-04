@@ -13,6 +13,7 @@
 #include "ctrl/Ctrl.h"
 #include "temp/TempMeasure.h"
 #include "ui/UIData.h"
+#include "ui/Display.h"
 
 class Heat {
 private:
@@ -20,15 +21,16 @@ private:
     Ctrl *ctrl;
     StopEvent *stopEvent;
     TempMeasure *tempMeasure;
-    Storage storage;
     TempCtrler tempCtrler = NULL;
-    UIData uiData{};
+    UIData uiData = {};
 public:
-    Heat(uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, Buzz *buzz);
+    Heat(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, uint8_t volume);
 
     void setup();
 
     void loop();
+
+    const UIData &getUiData() const;
 };
 
 #endif //ESP8285HEAT_HEAT_H

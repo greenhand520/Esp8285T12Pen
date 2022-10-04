@@ -6,7 +6,7 @@
 
 ### 芯片 Datasheet
 
-MCU：[ESP8266](https://www.espressif.com/zh-hans/support/documents/technical-documents?keys=&field_type_tid%5B%5D=492)  [ESP8285](http://www.semiee.com/search?searchModel=esp8285)
+MCU：[ESP8266](https://www.espressif.com/zh-hans/support/documents/technical-documents?keys=&field_type_tid%5B%5D=492)  [ESP8285](http://www.semiee.com/search?searchModel=esp8285)  ESP8285H16（2M）  ESP8285N08 ESP8285H08（1MB）
 
 放大器：[GS8551](http://www.semiee.com/002547f3-8d6a-4e20-8d2c-8b5922c1cb3d.html) 
 

@@ -4,19 +4,22 @@
 #include "Heat.h"
 
 
-Heat::Heat(uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, Buzz *buzz) {
+Heat::Heat(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, uint8_t volume) {
     this->ctrl = c;
     this->stopEvent = se;
     this->tempMeasure = tm;
-    this->buzz = buzz;
-    this->storage = Storage();
+    this->buzz = new Buzz(buzzPin, volume);
     this->tempCtrler = TempCtrler(pwmPin);
 
-    storage.loadSettings();
+    loadSettings(uiData.settings);
 }
 
 void Heat::setup() {
     ctrl->attachButtonInterrupt();
+}
+
+const UIData &Heat::getUiData() const {
+    return uiData;
 }
 
 void Heat::loop() {

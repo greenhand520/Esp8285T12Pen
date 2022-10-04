@@ -4,19 +4,18 @@
 
 #include "StopEvent.h"
 
-StopEvent::StopEvent(uint8_t interruptPin, uint8_t interruptMode) : interruptPin(interruptPin),
-                                                                    interruptMode(interruptMode) {
+StopEvent::StopEvent(uint8_t interruptPin, uint8_t interruptMode) {
     pinMode(interruptPin, INPUT_PULLUP);
 }
 
 
-uint8_t StopEvent::getInterruptPin() const {
-    return interruptPin;
-}
-
-uint8_t StopEvent::getInterruptMode() const {
-    return interruptMode;
-}
+//uint8_t StopEvent::getInterruptPin() const {
+//    return interruptPin;
+//}
+//
+//uint8_t StopEvent::getInterruptMode() const {
+//    return interruptMode;
+//}
 
 bool StopEvent::isStop() const {
     return stopFlag;

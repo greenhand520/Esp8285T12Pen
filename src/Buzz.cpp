@@ -5,11 +5,9 @@
 
 #include "Buzz.h"
 
-Buzz::Buzz(uint8_t pin, uint8_t _volume) : pin(pin) {
-    this->volume = constrain(_volume, 0, 10);
+Buzz::Buzz(uint8_t pin, uint8_t volume) : pin(pin) {
     pinMode(pin, OUTPUT);
-    analogWrite(pin, volume);
-    analogWriteRange(this->volume * 10);
+    setVolume(volume);
 }
 
 void Buzz::setMelody(Tone _melody[]) {
@@ -19,10 +17,8 @@ void Buzz::setMelody(Tone _melody[]) {
 
 void Buzz::setVolume(uint8_t _volume) {
     this->volume = constrain(_volume, 0, 10);
-    if (volume == 0) {
-        analogWrite(pin, 0);
-        // analogWriteFreq(0);
-    }
+    analogWrite(pin, volume * 20);
+//    analogWriteRange(255);
 }
 
 // 参考： https://www.esp32.com/viewtopic.php?t=4978

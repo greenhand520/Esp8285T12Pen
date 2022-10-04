@@ -50,7 +50,11 @@ private:
     uint16_t playingIndex = 0;
 
 public:
-
+    /**
+     * 初始化
+     * @param pin 蜂鸣器引脚 带pwm输出
+     * @param volume 音量 0 ～ 10
+     */
     Buzz(uint8_t pin, uint8_t volume);
 
     void setVolume(uint8_t volume);

@@ -10,8 +10,8 @@
 
 class StopEvent {
 protected:
-    uint8_t interruptPin;
-    uint8_t interruptMode;
+//    uint8_t interruptPin;
+//    uint8_t interruptMode;
     // 停止加热标记 终端函数仅修改该标记
     bool stopFlag = false;
 
@@ -25,9 +25,9 @@ public:
      */
     StopEvent(uint8_t interruptPin, uint8_t interruptMode);
 
-    uint8_t getInterruptPin() const;
-
-    uint8_t getInterruptMode() const;
+//    uint8_t getInterruptPin() const;
+//
+//    uint8_t getInterruptMode() const;
 
     /**
      * 是否停止加热
