@@ -70,6 +70,6 @@ extern Tone BootMelody[];
 extern Tone DormancyMelody[];
 extern Tone ClickMelody[];
 extern Tone ConfirmClickedMelody[];
-extern Tone MMenuClickedMelody[];
+extern Tone MenuClickedMelody[];
 
 #endif //OESPHEAT_BUZZ_H

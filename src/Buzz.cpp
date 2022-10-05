@@ -66,7 +66,7 @@ Tone ConfirmClickedMelody[] = {
         {NOTE_NONE, 0},
 };
 
-Tone MMenuClickedMelody[] = {
+Tone MenuClickedMelody[] = {
         {NOTE_E4,   200},
         {NOTE_NONE, 0},
 };

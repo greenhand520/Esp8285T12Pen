@@ -12,8 +12,9 @@ private:
     uint8_t adcPin;
 
 public:
-    GS8551Measure(uint8_t adcPin);
+    explicit GS8551Measure(uint8_t adcPin);
 
+    uint16_t * getTemps(uint8_t count) override;
 };
 
 

@@ -10,6 +10,16 @@
 
 class TempMeasure {
 
+public:
+
+    /**
+     * 获取count次的温度值
+     * @param count
+     * @return
+     */
+    virtual uint16_t *getTemps(uint8_t count) = 0;
+
+
 };
 
 #endif //ESPHEAT_TEMPMEASURE_H

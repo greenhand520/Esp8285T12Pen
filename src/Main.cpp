@@ -39,4 +39,5 @@ void setup() {
 
 void loop() {
     heat.loop();
+    display.refresh();
 }

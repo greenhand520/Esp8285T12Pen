@@ -21,7 +21,7 @@ private:
     Ctrl *ctrl;
     StopEvent *stopEvent;
     TempMeasure *tempMeasure;
-    TempCtrler tempCtrler = NULL;
+    TempCtrler *tempCtrler;
     UIData uiData = {};
 public:
     Heat(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, uint8_t volume);

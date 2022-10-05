@@ -37,7 +37,17 @@ public:
 
     void pushCtrl(CtrlType ct);
 
+    /**
+     * 从队列中弹出当前操作
+     * @return
+     */
     CtrlType popCtrl();
+
+    /**
+     * 获取当前操作 操作仍保存在队列中
+     * @return
+     */
+    CtrlType curCtrl();
 
     void clearCtrlQueue();
 

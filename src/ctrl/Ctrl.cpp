@@ -33,3 +33,13 @@ void Ctrl::clearCtrlQueue() {
         ctrlQueue.data[i] = NO_CTRL;
     }
 }
+
+CtrlType Ctrl::curCtrl() {
+    if (ctrlQueue.rear != ctrlQueue.front) {
+        CtrlType ctrlType = ctrlQueue.data[ctrlQueue.front];
+        return ctrlType;
+    } else {
+        // 对空
+        return NO_CTRL;
+    }
+}
