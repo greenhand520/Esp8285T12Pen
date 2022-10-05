@@ -12,9 +12,11 @@
 
 // ESP引入ESP_EEPROM读写EEPROM
 #if (defined(ESP8266)) || (defined(ESP32))
-    #include <ESP_EEPROM.h>
+
+#include <ESP_EEPROM.h>
+
 #else
-    #include <EEPROM.h>
+#include <EEPROM.h>
 #endif
 
 void loadSettings(Settings settings);

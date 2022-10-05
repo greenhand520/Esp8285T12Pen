@@ -52,9 +52,9 @@ struct Settings {
 
 struct UIData {
     /**
-     * 关闭屏幕
+     * 打开屏幕
      */
-    bool offScreen = false;
+    bool onScreen = true;
     /**
      * 展示休眠图标
      */

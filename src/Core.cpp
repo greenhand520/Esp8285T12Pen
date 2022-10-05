@@ -42,7 +42,7 @@ void Core::dormancy(unsigned long curTime) {
         heat(0);
         buzz->setMelody(DormancyMelody);
         // 关闭屏幕
-        uiData.offScreen = true;
+        uiData.onScreen = false;
     } else {
         // 展示休眠图标
         uiData.showDormancyIco = true;
@@ -61,7 +61,7 @@ void Core::loop() {
         }
         dormancy(curTime);
     } else {
-        uiData.offScreen = false;
+        uiData.onScreen = true;
         dormancyStartTime = UINT32_MAX;
         heat(uiData.targetTemp);
     }

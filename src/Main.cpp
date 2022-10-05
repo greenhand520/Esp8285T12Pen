@@ -7,6 +7,7 @@
 #include "dormancy/ShockDormancyEvent.h"
 #include "ctrl/TwoButtonCtrl.h"
 #include "temp/GS8551Measure.h"
+#include "ui/Display.h"
 
 #define TEMP_ADC_PIN 6
 #define SCL_PIN 9
@@ -30,15 +31,6 @@ Core core = Core(BUZZ_PIN, HEAT_PWM_PIN,
 void setup() {
     noInterrupts();
     core.setup();
-//    // 别忘记添加中断
-//    // 低电平变高电平触发休眠中断
-//    attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
-//        shockDormancyEvent->attachDormancy();
-//    }, RISING);
-//    // 高电平变低电平触发加热中断
-//    attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
-//        shockDormancyEvent->attachWork();
-//    }, FALLING);
     display.init(uiData);
     interrupts();
 }
