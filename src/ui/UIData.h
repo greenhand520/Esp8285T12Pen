@@ -40,9 +40,9 @@ struct Settings {
     uint8_t brightness = 5;
 
     /**
-     * 静态休眠时间 即处于静止状态下多少秒后进入休眠状态 0 ～ 30  0：关闭自动休眠
+     * 工作/休眠状态改变等待时间 第一次触发状态改变到确认状态改变的等待时间   0 ～ 30  0：关闭自动休眠
      */
-    uint8_t staticDormancySecs = 5;
+    uint8_t stateChangeWaitSecs = 5;
 
     /**
      * 屏幕旋转
@@ -52,6 +52,15 @@ struct Settings {
 
 struct UIData {
     /**
+     * 关闭屏幕
+     */
+    bool offScreen = false;
+    /**
+     * 展示休眠图标
+     */
+    bool showDormancyIco = false;
+
+    /**
      * 当前温度
      */
     uint16_t currentTemp;
@@ -60,16 +69,6 @@ struct UIData {
      * 目标温度
      */
     uint16_t targetTemp;
-
-    /**
-     * 当前温度 / 目标温度
-     */
-    uint8_t percentage;
-
-    /**
-     * 加热时间
-     */
-    uint8_t heatMins;
 
     Settings settings = {};
 

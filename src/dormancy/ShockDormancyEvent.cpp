@@ -5,32 +5,36 @@
 
 #include "ShockDormancyEvent.h"
 
-ShockDormancyEvent::ShockDormancyEvent(uint8_t interruptPin, uint8_t staticSecs) {
-    pinMode(interruptPin, INPUT_PULLUP);
-    setStaticSecs(staticSecs);
+ShockDormancyEvent::ShockDormancyEvent(uint8_t _shockPin, uint8_t waitSecs) : DormancyEvent(waitSecs) {
+    this->shockPin = _shockPin;
+    pinMode(shockPin, INPUT_PULLUP);
 }
 
+bool ShockDormancyEvent::isDormancy(unsigned long curTime) {
+    return dormancyFlag;
+}
 
-void ShockDormancyEvent::attach() {
-
-    // todo: 待验证
-    // 低电平到高电平触发一次中断开始计时
-    if (staticSecs != 0) {
-        // 返回Arduino板开始运行当前程序时的毫秒数
-        interruptTime = millis();
+void ShockDormancyEvent::checkState() {
+    // waitSecs = 0 => 不自动休眠状态
+    // 和上次获取到的IO状态不一样 => 开始设定第一次触发休眠/工作时间
+    // 和上次获取到的IO状态一致 => 计算当前时间和开始触发休眠/工作的时间差 大于设定的等待时间 => 确定状态
+    if (waitSecs == 0) {
+        dormancyFlag = false;
+    } else if (digitalRead(shockPin) != lastShockPinValue) {
+        // 取反
+        lastShockPinValue = ~lastShockPinValue;
+        if (lastShockPinValue) {
+            attachDormancyTime = millis();
+        } else {
+            attachWorkTime = millis();
+        }
+    } else {
+        if (lastShockPinValue && millis() - attachDormancyTime > waitSecs * 1000) {
+            dormancyFlag = true;
+        } else if (!lastShockPinValue && millis() - attachWorkTime > waitSecs * 1000) {
+            dormancyFlag = false;
+        }
     }
-}
-
-void ShockDormancyEvent::setStaticSecs(uint8_t _staticSecs) {
-    this->staticSecs = constrain(_staticSecs, 0, 30) * 10;
-}
-
-bool ShockDormancyEvent::isStartDormancy() {
-    // 当前时间离中断时间的间隔（处于静态的时间） 超过设定的时间 判定为停止加热
-    if (staticSecs != 0 && millis() - interruptTime > staticSecs * 1000) {
-        return true;
-    }
-    return false;
 }
 
 

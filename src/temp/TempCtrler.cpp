@@ -18,7 +18,7 @@ void TempCtrler::stopHeat() const {
     }
 }
 
-void TempCtrler::heat(uint16_t *temps, uint8_t count) {
+void TempCtrler::heat(uint16_t curTemps[], uint8_t count, uint16_t targetTemp) {
     // todo: PID调温
     uint16_t pwmOut = 0;
     if (isPMOS) {

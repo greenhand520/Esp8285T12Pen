@@ -77,7 +77,7 @@ Menu screenRotate = {13, CONFIRM, 14, "Screen Rotate: "};
 Menu initTempSet = {14, CONFIRM, 15, "Init Temperature: "};
 Menu tempStepSet = {15, CONFIRM, 16, "Temperature Step: "};
 Menu dormancyTempSet = {16, CONFIRM, 17, "Dormancy Temperature: "};
-Menu staticDormancySecsSet = {17, CONFIRM, 18, "Static Dormancy Secs: "};
+Menu stateChangeSecs = {17, CONFIRM, 18, "State Change Wait Secs: "};
 Menu dormancyMinsSet = {18, CONFIRM, 19, "Dormancy Mins: "};
 
 

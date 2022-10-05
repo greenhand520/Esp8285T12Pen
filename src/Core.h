@@ -13,7 +13,6 @@
 #include "ctrl/Ctrl.h"
 #include "temp/TempMeasure.h"
 #include "ui/UIData.h"
-#include "ui/Display.h"
 
 class Core {
 private:
@@ -23,6 +22,16 @@ private:
     TempMeasure *tempMeasure;
     TempCtrler *tempCtrler;
     UIData uiData;
+    // 一些状态信息
+    unsigned long dormancyStartTime = UINT32_MAX;
+
+    void heat(uint16_t targetTemp);
+
+    void work();
+
+    void dormancy(unsigned long curTime);
+
+
 public:
     Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm, UIData uiData);
 

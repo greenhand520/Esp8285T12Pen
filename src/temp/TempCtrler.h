@@ -20,7 +20,13 @@ public:
 
     void stopHeat() const;
 
-    void heat(uint16_t temps[], uint8_t count);
+    /**
+     * 温控调温
+     * @param curTemps 几个当前温度
+     * @param count 获取到的当前温度数量
+     * @param targetTemp 目标温度
+     */
+    void heat(uint16_t curTemps[], uint8_t count, uint16_t targetTemp);
 
     uint16_t getAvgTemp();
 

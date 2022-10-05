@@ -19,7 +19,7 @@
 #define BUZZ_PIN 16
 
 UIData uiData{};
-DormancyEvent *shockDormancyEvent = new ShockDormancyEvent(SHOCK_PIN, 0);
+ShockDormancyEvent *shockDormancyEvent = new ShockDormancyEvent(SHOCK_PIN, 0);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
 Display display = Display(false, 5, SDA_PIN, SCL_PIN, RESET_PIN);
 Core core = Core(BUZZ_PIN, HEAT_PWM_PIN,
@@ -30,15 +30,21 @@ Core core = Core(BUZZ_PIN, HEAT_PWM_PIN,
 void setup() {
     noInterrupts();
     core.setup();
-    // 别忘记添加中断 低电平变高电平触发中断
-    attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
-        shockDormancyEvent->attach();
-    }, RISING);
+//    // 别忘记添加中断
+//    // 低电平变高电平触发休眠中断
+//    attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
+//        shockDormancyEvent->attachDormancy();
+//    }, RISING);
+//    // 高电平变低电平触发加热中断
+//    attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
+//        shockDormancyEvent->attachWork();
+//    }, FALLING);
     display.init(uiData);
     interrupts();
 }
 
 void loop() {
+    shockDormancyEvent->checkState();
     core.loop();
     display.refresh();
 }

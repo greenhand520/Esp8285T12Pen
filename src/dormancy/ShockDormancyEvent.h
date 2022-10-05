@@ -11,32 +11,36 @@
 
 class ShockDormancyEvent : public DormancyEvent {
 private:
+    uint8_t shockPin;
+
     /**
-     * 静态多少秒后开始休眠
+     * 第一次触发休眠的时间
      */
-    uint8_t staticSecs = 5;
-    unsigned long interruptTime = 0;
+    unsigned long attachDormancyTime = UINT32_MAX;
+
+    /**
+     * 第一次触发工作的时间
+     */
+    unsigned long attachWorkTime = UINT32_MAX;
+
+    // 初始状态表示震动开关接通 处于工作状态
+    uint8_t lastShockPinValue = LOW;
+
+    bool dormancyFlag = false;
 
 public:
     /**
   * 初始化停止加热事件 pin模式设置为输入 内部上拉
-  * @param _interruptPin 触发硬件中断pin
-  * @param _interruptMode 中断模式
+  * @param waitSecs 第一次触发引脚电平变化到状态改变需要的时间 => 调节灵敏度 0 ～ 30 0：关闭休眠
+  * @param shockPin 震动开关连接的引脚
   */
-    ShockDormancyEvent(uint8_t interruptPin, uint8_t staticSecs);
+    ShockDormancyEvent(uint8_t waitSecs, uint8_t shockPin);
 
-    void attach() override;
+    void checkState();
 
-    bool isStartDormancy() override;
+    bool isDormancy(unsigned long curTime) override;
 
-    /**
-     * 静态多少秒后开始休眠
-     * @param staticSecs
-     */
-    void setStaticSecs(uint8_t staticSecs);
-
-
-
+//    bool isWork(unsigned long curTime) override;
 };
 
 #endif //ESP8285HEAT_SHOCKEVENT_H

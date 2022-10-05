@@ -9,17 +9,24 @@
 #include <Arduino.h>
 
 class DormancyEvent {
-public:
+protected:
     /**
-     * 是否开始休眠
-     * @return
+     * 静态多少秒后开始休眠 动态多少秒后开始工作 默认5s 根据这个调节灵敏度 0 ～ 30 0：关闭休眠
      */
-    virtual bool isStartDormancy() = 0;
+    uint8_t waitSecs = 5;
 
-    /**
-     * 被中断函数调用
-     */
-    virtual void attach() = 0;
+public:
+    explicit DormancyEvent(uint8_t _waitSecs) {
+        setWaitSecs(_waitSecs);
+    }
+
+    void setWaitSecs(uint8_t _waitSecs) {
+        this->waitSecs = constrain(_waitSecs, 0, 30) * 10;
+    }
+
+    virtual bool isDormancy(unsigned long curTime) = 0;
+
+//    virtual bool isWork(unsigned long curTime) = 0;
 
 };
 
