@@ -1,4 +1,4 @@
-// 震动开关
+// 震动开关 低电平到高电平后xx秒休眠
 // Created by mdmbct on 10/2/22.
 //
 
@@ -6,10 +6,10 @@
 #define ESP8285HEAT_SHOCKEVENT_H
 
 #include <Arduino.h>
-#include "StopEvent.h"
+#include "DormancyEvent.h"
 
 
-class ShockStopEvent : public StopEvent {
+class ShockDormancyEvent : public DormancyEvent {
 private:
     /**
      * 静态多少秒后开始休眠
@@ -23,11 +23,11 @@ public:
   * @param _interruptPin 触发硬件中断pin
   * @param _interruptMode 中断模式
   */
-    ShockStopEvent(uint8_t interruptPin, uint8_t staticSecs);
+    ShockDormancyEvent(uint8_t interruptPin, uint8_t staticSecs);
 
-    void stop() override;
+    void attach() override;
 
-    bool isStop() override;
+    bool isStartDormancy() override;
 
     /**
      * 静态多少秒后开始休眠

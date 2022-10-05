@@ -2,29 +2,29 @@
 // Created by mdmbct on 10/1/22.
 //
 
-#ifndef ESP8285HEAT_HEAT_H
-#define ESP8285HEAT_HEAT_H
+#ifndef ESP8285HEAT_CORE_H
+#define ESP8285HEAT_CORE_H
 
 #include <Arduino.h>
 #include "Buzz.h"
 #include "Storage.h"
-#include "stop/StopEvent.h"
+#include "dormancy/DormancyEvent.h"
 #include "temp/TempCtrler.h"
 #include "ctrl/Ctrl.h"
 #include "temp/TempMeasure.h"
 #include "ui/UIData.h"
 #include "ui/Display.h"
 
-class Heat {
+class Core {
 private:
     Buzz *buzz;
     Ctrl *ctrl;
-    StopEvent *stopEvent;
+    DormancyEvent *dormancyEvent;
     TempMeasure *tempMeasure;
     TempCtrler *tempCtrler;
-    UIData uiData = {};
+    UIData uiData;
 public:
-    Heat(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, StopEvent *se, TempMeasure *tm, uint8_t volume);
+    Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm, UIData uiData);
 
     void setup();
 
@@ -33,7 +33,6 @@ public:
      */
     void loop();
 
-    [[nodiscard]] const UIData &getUiData() const;
 };
 
-#endif //ESP8285HEAT_HEAT_H
+#endif //ESP8285HEAT_CORE_H

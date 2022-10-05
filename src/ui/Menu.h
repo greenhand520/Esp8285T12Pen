@@ -6,10 +6,13 @@
 
 #include <Arduino.h>
 
+
+#define NO_MENU 255
+// 确定操作 不进行界面切换
+#define CONFIRM 254
 struct Menu {
     uint8_t index;
 //    uint8_t previousIndex;
-//    uint8_t nextIndex;
     uint8_t confirmIndex;
     uint8_t nextIndex;
     char *name;
@@ -17,7 +20,36 @@ struct Menu {
     void (*drawFun)();
 };
 
-const uint8_t homeIco[] PROGMEM = {
+// 用来临时存储翻过去的界面
+#define MENU_STACK_MAX_SIZE 5
+struct MenuStack {
+    uint8_t indexs[MENU_STACK_MAX_SIZE];
+    // 指向栈顶元素的下一个位置 （uint_8不能为-1）
+    uint8_t top = 0;
+};
+
+MenuStack menuStack{};
+
+bool pushMenu(uint8_t index) {
+    if (menuStack.top <= MENU_STACK_MAX_SIZE - 1) {
+        menuStack.indexs[menuStack.top] = index;
+        menuStack.top++;
+        return true;
+    }
+    return false;
+}
+
+uint8_t popMenu() {
+    if (menuStack.top != 0) {
+        uint8_t index = menuStack.indexs[menuStack.top];
+        menuStack.top--;
+        return index;
+    }
+    return NO_MENU;
+}
+
+
+const; uint8_t homeIco[] PROGMEM = {
         0x00, 0xE0, 0x07, 0x00, 0x00, 0xF0, 0x0F, 0x00, 0x00, 0xF8, 0x1F, 0x00, 0x00, 0x7C, 0x3E, 0x00, 0x00, 0x3E,
         0x7C, 0x00, 0x00, 0x1F, 0xF8, 0x00, 0x80, 0x0F, 0xF0, 0x01, 0xC0, 0x07, 0xE0, 0x03,
         0xE0, 0x03, 0xC0, 0x07, 0xF0, 0x01, 0x80, 0x0F, 0xF8, 0x00, 0x00, 0x1F, 0x7C, 0x00, 0x00, 0x3E, 0x3E, 0x00,
@@ -67,10 +99,6 @@ const uint8_t aboutIco[] PROGMEM = {
         0xC0, 0x03, 0x80, 0x03, 0x80, 0x07, 0x80, 0x03, 0x00, 0x3F, 0x00, 0x07, 0x00, 0xFC, 0xFF, 0x0F, 0x00, 0xF0,
         0xFF, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-#define NO_MENU 255
-// 确定操作 不进行界面切换
-#define CONFIRM 254
-
 // 界面切换
 Menu homeSw = {0, 4, 1, "HOME"};
 Menu settingsSw = {1, 5, 2, "SETTINGS"};
@@ -102,7 +130,6 @@ Menu tempStepSet = {15, CONFIRM, 16, "Temperature Step: "};
 Menu dormancyTempSet = {16, CONFIRM, 17, "Dormancy Temperature: "};
 Menu staticDormancySecsSet = {17, CONFIRM, 18, "Static Dormancy Secs: "};
 Menu dormancyMinsSet = {18, CONFIRM, 19, "Dormancy Mins: "};
-
 
 
 #define ESP8285HEAT_MENU_H
