@@ -18,7 +18,7 @@
 #define SHOCK_PIN 15
 #define BUZZ_PIN 16
 
-StopEvent *shockStopEvent = new ShockStopEvent(SHOCK_PIN, HIGH);
+StopEvent *shockStopEvent = new ShockStopEvent(SHOCK_PIN, 0);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
 Display display = Display(false, 5, SDA_PIN, SCL_PIN, RESET_PIN);
 Heat heat = Heat(BUZZ_PIN, HEAT_PWM_PIN,
@@ -29,10 +29,10 @@ Heat heat = Heat(BUZZ_PIN, HEAT_PWM_PIN,
 void setup() {
     noInterrupts();
     heat.setup();
-    // 别忘记添加中断
+    // 别忘记添加中断 低电平变高电平触发中断
     attachInterrupt(digitalPinToInterrupt(SHOCK_PIN), []() {
         shockStopEvent->stop();
-    }, LOW);
+    }, RISING);
     display.init(heat.getUiData());
     interrupts();
 }

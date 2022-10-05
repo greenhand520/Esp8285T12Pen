@@ -11,13 +11,32 @@
 
 class ShockStopEvent : public StopEvent {
 private:
-    uint8_t shockCount{};
+    /**
+     * 静态多少秒后开始休眠
+     */
+    uint8_t staticSecs = 5;
+    unsigned long interruptTime = 0;
 
 public:
-
-    ShockStopEvent(uint8_t interruptPin, uint8_t interruptMode);
+    /**
+  * 初始化停止加热事件 pin模式设置为输入 内部上拉
+  * @param _interruptPin 触发硬件中断pin
+  * @param _interruptMode 中断模式
+  */
+    ShockStopEvent(uint8_t interruptPin, uint8_t staticSecs);
 
     void stop() override;
+
+    bool isStop() override;
+
+    /**
+     * 静态多少秒后开始休眠
+     * @param staticSecs
+     */
+    void setStaticSecs(uint8_t staticSecs);
+
+
+
 };
 
 #endif //ESP8285HEAT_SHOCKEVENT_H

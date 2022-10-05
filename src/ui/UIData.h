@@ -10,14 +10,9 @@
 struct Settings {
 
     /**
-     * 加热时间：即达到设定温度后且停止加热事件触发后维持温度的时间，之后会进入休眠状态 min 5 ～ 10min
-     */
-    uint8_t heatTime = 5;
-
-    /**
      * 休眠状态的时间 min 5 ～ 30
      */
-    uint8_t dormancyTime = 20;
+    uint8_t dormancyMins = 20;
 
     /**
      * 休眠温度 ℃ 0 ～ 100
@@ -43,6 +38,11 @@ struct Settings {
      * 屏幕亮度
      */
     uint8_t brightness = 5;
+
+    /**
+     * 静态休眠时间 即处于静止状态下多少秒后进入休眠状态 0 ～ 30  0：关闭自动休眠
+     */
+    uint8_t staticDormancySecs = 5;
 
     /**
      * 屏幕旋转
