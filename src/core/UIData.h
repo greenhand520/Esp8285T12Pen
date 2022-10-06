@@ -87,6 +87,5 @@ struct UIData {
 };
 
 extern UIData uiData;
-//extern UIData uiData = {};
 
 #endif //ESPHEAT_UIDATA_H

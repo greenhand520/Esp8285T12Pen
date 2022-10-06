@@ -8,7 +8,7 @@
 #ifndef ARDUINOESPHEAT_TWOBUTTONCTRL_H
 #define ARDUINOESPHEAT_TWOBUTTONCTRL_H
 
-#include "Ctrl.h"
+#include "core/Ctrl.h"
 
 class TwoButtonCtrl : public Ctrl {
 private:

@@ -6,39 +6,16 @@
 #define ESP8285HEAT_DISPLAY_H
 
 #include <Arduino.h>
-#include <U8g2lib.h>
-#include "UIData.h"
+#include "Component.h"
 
-class Display {
-private:
-//    U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C driver = nullptr;
-    U8G2_SH1107_64X128_F_HW_I2C driver = nullptr;
-    UIData uiData;
+U8G2 screenDriver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin);
 
-public:
-    /**
-     * 初始化
-     * @param isRotate 是否旋转
-     * @param brightness 亮度 1-10
-     * @param sdaPin
-     * @param sclPin
-     */
-    Display(bool isRotate, uint8_t brightness, uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin);
+void screenDriverInit();
 
-    /**
-     * 从UIdata中取数据更新屏幕
-     * @param uiData
-     */
-    void init(UIData uiData);
+void setRotate(bool isRotate);
 
-    void setRotate(bool isRotate);
+void setBrightness(uint8_t _brightness);
 
-    void setBrightness(uint8_t brightness);
-
-    /**
-     * 刷新屏幕
-     */
-    void refresh();
-};
+void refreshScreen(CtrlType ct);
 
 #endif //ESP8285HEAT_DISPLAY_H

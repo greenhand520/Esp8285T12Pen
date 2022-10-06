@@ -6,8 +6,8 @@
 #ifndef ARDUINOESPHEAT_ROTARYCTRL_H
 #define ARDUINOESPHEAT_ROTARYCTRL_H
 
-#include "Ctrl.h"
-#include <RotaryEncoder.h>
+#include "core/Ctrl.h"
+#include "RotaryEncoder.h"
 
 class RotaryCtrl : public Ctrl {
 

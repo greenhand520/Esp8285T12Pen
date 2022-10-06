@@ -3,14 +3,13 @@
 //
 #include "Core.h"
 
-
-Core::Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm, UIData uiData) {
+Core::Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm) {
     this->ctrl = c;
     this->dormancyEvent = de;
     this->tempMeasure = tm;
     this->buzz = new Buzz(buzzPin, uiData.settings.volume);
     this->tempCtrler = new TempCtrler(pwmPin, true);
-
+    // 加载uiData.settings
     loadSettings(uiData.settings);
 }
 
@@ -68,7 +67,7 @@ void Core::loop() {
     }
 
     // 取操作 到屏幕显示时候 再删除当前操作
-    CtrlType ct = ctrl->curCtrl();
+//    CtrlType ct = ctrl->curCtrl();
 //    switch (ct) {
 //        case PREVIOUS:
 //            buzz->setMelody(ClickMelody);
@@ -89,15 +88,9 @@ void Core::loop() {
 //            break;
 //    }
     buzz->setMelody(ClickMelody);
-    components[uiData.curCompIndex].uiDataUpdater(ct);
     // 播放声音
     buzz->play();
 }
-
-//uint16_t Core::avgTemp(uint16_t curTemps[], uint8_t count) {
-//
-//}
-
 
 
 

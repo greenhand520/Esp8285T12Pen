@@ -5,7 +5,7 @@
 #ifndef ESP8285HEAT_GS8551MEASURE_H
 #define ESP8285HEAT_GS8551MEASURE_H
 
-#include "TempMeasure.h"
+#include "core/TempMeasure.h"
 
 class GS8551Measure : public TempMeasure {
 private:

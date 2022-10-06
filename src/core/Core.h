@@ -8,12 +8,11 @@
 #include <Arduino.h>
 #include "Buzz.h"
 #include "Storage.h"
-#include "dormancy/DormancyEvent.h"
-#include "temp/TempCtrler.h"
-#include "ctrl/Ctrl.h"
-#include "temp/TempMeasure.h"
-#include "ui/UIData.h"
-#include "ui/Component.h"
+#include "DormancyEvent.h"
+#include "TempCtrler.h"
+#include "Ctrl.h"
+#include "TempMeasure.h"
+#include "UIData.h"
 
 class Core {
 private:
@@ -22,7 +21,7 @@ private:
     DormancyEvent *dormancyEvent;
     TempMeasure *tempMeasure;
     TempCtrler *tempCtrler;
-    UIData uiData;
+//    UIData uiData;
     // 一些状态信息
     unsigned long dormancyStartTime = UINT32_MAX;
 
@@ -35,11 +34,16 @@ private:
 //    uint16_t avgTemp(uint16_t curTemps[], uint8_t count);
 
 public:
-    Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm, UIData uiData);
-
     /**
-     * 在IO初始化之后调用 屏幕驱动初始化之前调用
+     * 图形驱动之前调用
+     * @param buzzPin
+     * @param pwmPin
+     * @param c
+     * @param de
+     * @param tm
      */
+    Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm);
+
     void setup();
 
     /**

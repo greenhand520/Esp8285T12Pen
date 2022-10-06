@@ -5,8 +5,9 @@
 #ifndef ESP8285HEAT_COMPONENT_H
 
 #include <Arduino.h>
-#include "UIData.h"
-#include "../ctrl/Ctrl.h"
+#include <U8g2lib.h>
+#include "core/UIData.h"
+#include "core/Ctrl.h"
 
 
 #define NO_COMP 255
@@ -117,7 +118,7 @@ void dormancyMinsSetUpdater(CtrlType ct);
 extern Component dormancyMinsSet;
 
 extern Component components[];
-
+extern U8G2 u8g2;
 
 #define ESP8285HEAT_COMPONENT_H
 

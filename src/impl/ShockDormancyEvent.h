@@ -6,7 +6,7 @@
 #define ESP8285HEAT_SHOCKEVENT_H
 
 #include <Arduino.h>
-#include "DormancyEvent.h"
+#include "core/DormancyEvent.h"
 
 
 class ShockDormancyEvent : public DormancyEvent {
