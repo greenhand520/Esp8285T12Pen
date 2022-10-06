@@ -42,9 +42,9 @@ public:
      * @param de
      * @param tm
      */
-    Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm);
+    Core(uint8_t buzzPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm);
 
-    void setup();
+    void setup(uint8_t pwmPin);
 
     /**
      * 更新UIData 控制蜂鸣器 温度检测 温控 按键检测

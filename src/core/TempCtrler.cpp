@@ -8,6 +8,16 @@ TempCtrler::TempCtrler(uint8_t pwmPin, bool _isPMOS) {
     this->pwmPin = pwmPin;
     pinMode(pwmPin, OUTPUT);
     this->isPMOS = _isPMOS;
+    // 初始化的时候 关闭加热
+    stopHeat();
+    // 初始化PID
+    TipConf tc = uiData.settings.tipConfs[uiData.settings.curTipIndex];
+    this->pid = new PID(&uiData.currentTemp, &pidOut, &setpoint, tc.p, tc.i, tc.d, DIRECT);
+    // PID输出限幅
+    pid->SetOutputLimits(0, 255);
+    // PID控制模式
+    pid->SetMode(AUTOMATIC);
+
 }
 
 void TempCtrler::stopHeat() const {
@@ -18,7 +28,7 @@ void TempCtrler::stopHeat() const {
     }
 }
 
-void TempCtrler::heat(uint16_t curTemps[], uint8_t count, uint16_t targetTemp) {
+void TempCtrler::heat(uint16_t curTemp, uint16_t targetTemp) {
     // todo: PID调温
     uint16_t pwmOut = 0;
     if (isPMOS) {

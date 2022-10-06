@@ -13,11 +13,11 @@ class TempMeasure {
 public:
 
     /**
-     * 获取count次的温度值
+     * 获取count次的温度值 返回的count次的平均值
      * @param count
      * @return
      */
-    virtual uint16_t *getTemps(uint8_t count) = 0;
+    virtual uint16_t readTemp(uint8_t count) = 0;
 
 
 };

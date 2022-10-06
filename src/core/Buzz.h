@@ -66,10 +66,10 @@ public:
     void IRAM_ATTR play();
 };
 
-extern Tone BootMelody[];
-extern Tone DormancyMelody[];
-extern Tone ClickMelody[];
-extern Tone ConfirmClickedMelody[];
-extern Tone MenuClickedMelody[];
+extern Tone BOOT_MELODY[];
+extern Tone DORMANCY_MELODY[];
+extern Tone CLICK_MELODY[];
+extern Tone CONFIRM_CLICKED_MELODY[];
+extern Tone MENU_CLICKED_MELODY[];
 
 #endif //OESPHEAT_BUZZ_H

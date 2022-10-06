@@ -7,7 +7,23 @@
 
 #include <Arduino.h>
 
+/**
+ * 烙铁配置
+ */
+struct TipConf {
+    char *name;
+    uint8_t index;
+    float p;
+    float i;
+    float d;
+};
+
 struct Settings {
+
+    /**
+     * 当前使用的烙铁配置索引
+     */
+    uint8_t curTipIndex = 0;
 
     /**
      * 休眠状态的时间 min 5 ～ 30
@@ -48,6 +64,14 @@ struct Settings {
      * 屏幕旋转
      */
     bool isRotate = false;
+
+    TipConf tipConfs[5] = {
+            {"Default", 0, 30, 0, 5},
+            {"Conf2",   1, 20, 1, 5},
+            {"Conf3",   2, 20, 1, 5},
+            {"Conf3",   1, 20, 1, 5},
+            {"Conf4",   2, 20, 1, 5}
+    };
 };
 
 struct UIData {
@@ -75,7 +99,7 @@ struct UIData {
     /**
      * 当前温度
      */
-    uint16_t currentTemp;
+    double currentTemp;
 
     /**
      * 目标温度

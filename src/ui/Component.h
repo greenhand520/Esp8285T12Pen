@@ -12,12 +12,11 @@
 
 #define NO_COMP 255
 // 确定操作 不进行界面切换
-#define CONFIRM_CTRL 254
 
 struct Component {
     uint8_t index;
 //    uint8_t previousIndex;
-    uint8_t confirmIndex;
+//    uint8_t confirmIndex;
     uint8_t nextIndex;
     char *name;
     void (*uiDataUpdater)(CtrlType ctrlType);

@@ -22,7 +22,7 @@
 UIData uiData{};
 ShockDormancyEvent *shockDormancyEvent = new ShockDormancyEvent(SHOCK_PIN, 0);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
-Core core = Core(BUZZ_PIN, HEAT_PWM_PIN,
+Core core = Core(BUZZ_PIN,
                  twoButtonCtrl,
                  shockDormancyEvent,
                  new GS8551Measure(TEMP_ADC_PIN));
@@ -30,7 +30,7 @@ U8G2 u8g2 = screenDriver(SDA_PIN, SCL_PIN, RESET_PIN);
 
 void setup() {
     noInterrupts();
-    core.setup();
+    core.setup(HEAT_PWM_PIN);
     screenDriverInit();
     interrupts();
 }
