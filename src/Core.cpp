@@ -16,6 +16,8 @@ Core::Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeas
 
 void Core::setup() {
     ctrl->attachButtonInterrupt();
+    uiData.targetTemp = uiData.settings.initTemp;
+//    uiData.currentTemp = avgTemp(tempMeasure->getTemps(10), 10);
 }
 
 void Core::heat(uint16_t targetTemp) {
@@ -30,6 +32,7 @@ void Core::heat(uint16_t targetTemp) {
 }
 
 void Core::work() {
+    uiData.onScreen = true;
     dormancyStartTime = UINT32_MAX;
     // 展示休眠图标
     uiData.showDormancyIco = false;
@@ -61,35 +64,39 @@ void Core::loop() {
         }
         dormancy(curTime);
     } else {
-        uiData.onScreen = true;
-        dormancyStartTime = UINT32_MAX;
-        heat(uiData.targetTemp);
+        work();
     }
 
     // 取操作 到屏幕显示时候 再删除当前操作
     CtrlType ct = ctrl->curCtrl();
-    switch (ct) {
-        case PREVIOUS:
-            buzz->setMelody(ClickMelody);
-            break;
-        case NEXT:
-            buzz->setMelody(ClickMelody);
-            break;
-        case MENU:
-            buzz->setMelody(MenuClickedMelody);
-            break;
-        case CONFIRM:
-            buzz->setMelody(ConfirmClickedMelody);
-            break;
-        case BACK:
-            buzz->setMelody(ClickMelody);
-            break;
-        default:
-            break;
-    }
+//    switch (ct) {
+//        case PREVIOUS:
+//            buzz->setMelody(ClickMelody);
+//            break;
+//        case NEXT:
+//            buzz->setMelody(ClickMelody);
+//            break;
+//        case MENU:
+//            buzz->setMelody(MenuClickedMelody);
+//            break;
+//        case CONFIRM:
+//            buzz->setMelody(ConfirmClickedMelody);
+//            break;
+//        case BACK:
+//            buzz->setMelody(ClickMelody);
+//            break;
+//        default:
+//            break;
+//    }
+    buzz->setMelody(ClickMelody);
+    components[uiData.curCompIndex].uiDataUpdater(ct);
     // 播放声音
     buzz->play();
 }
+
+//uint16_t Core::avgTemp(uint16_t curTemps[], uint8_t count) {
+//
+//}
 
 
 

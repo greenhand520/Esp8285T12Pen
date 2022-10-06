@@ -52,6 +52,14 @@ struct Settings {
 
 struct UIData {
     /**
+     * 当前组件索引 默认Home界面
+     */
+    uint8_t curCompIndex = 1;
+    /**
+     * 上一个组件索引 默认Home界面图标
+     */
+    uint8_t lastCompIndex = 0;
+    /**
      * 打开屏幕
      */
     bool onScreen = true;
@@ -59,6 +67,10 @@ struct UIData {
      * 展示休眠图标
      */
     bool showDormancyIco = false;
+    /**
+     * 展示快速加热图标
+     */
+    bool showFastHeatIco = false;
 
     /**
      * 当前温度
@@ -74,6 +86,7 @@ struct UIData {
 
 };
 
+extern UIData uiData;
 //extern UIData uiData = {};
 
 #endif //ESPHEAT_UIDATA_H

@@ -13,6 +13,7 @@
 #include "ctrl/Ctrl.h"
 #include "temp/TempMeasure.h"
 #include "ui/UIData.h"
+#include "ui/Component.h"
 
 class Core {
 private:
@@ -31,17 +32,20 @@ private:
 
     void dormancy(unsigned long curTime);
 
+//    uint16_t avgTemp(uint16_t curTemps[], uint8_t count);
 
 public:
     Core(uint8_t buzzPin, uint8_t pwmPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm, UIData uiData);
 
+    /**
+     * 在IO初始化之后调用 屏幕驱动初始化之前调用
+     */
     void setup();
 
     /**
      * 更新UIData 控制蜂鸣器 温度检测 温控 按键检测
      */
     void loop();
-
 };
 
 #endif //ESP8285HEAT_CORE_H
