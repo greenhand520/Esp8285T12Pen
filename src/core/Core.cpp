@@ -14,6 +14,7 @@ Core::Core(uint8_t buzzPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm) {
 
 void Core::setup(uint8_t pwmPin) {
     ctrl->attachButtonInterrupt();
+    dormancyEvent->setWaitSecs(uiData.settings.stateChangeWaitSecs);
     uiData.targetTemp = uiData.settings.initTemp;
     // 开机音效
     buzz->setMelody(BOOT_MELODY);

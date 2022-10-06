@@ -13,6 +13,12 @@ uint16_t GS8551Measure::readTemp(uint8_t count) {
     delayMicroseconds(500);
     // 读取ADC时禁止中断
     noInterrupts();
+    uint16_t adcRaw;
+    for (int i = 0; i < count; ++i) {
+        adcRaw += digitalRead(adcPin);
+        delayMicroseconds(100);
+    }
+    adcRaw = adcRaw / count;
 
 
     return 0;

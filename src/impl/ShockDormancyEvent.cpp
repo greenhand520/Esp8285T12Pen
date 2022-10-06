@@ -5,7 +5,7 @@
 
 #include "ShockDormancyEvent.h"
 
-ShockDormancyEvent::ShockDormancyEvent(uint8_t _shockPin, uint8_t waitSecs) : DormancyEvent(waitSecs) {
+ShockDormancyEvent::ShockDormancyEvent(uint8_t _shockPin) {
     this->shockPin = _shockPin;
     pinMode(shockPin, INPUT_PULLUP);
 }

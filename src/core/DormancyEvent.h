@@ -16,9 +16,6 @@ protected:
     uint8_t waitSecs = 5;
 
 public:
-    explicit DormancyEvent(uint8_t _waitSecs) {
-        setWaitSecs(_waitSecs);
-    }
 
     void setWaitSecs(uint8_t _waitSecs) {
         this->waitSecs = constrain(_waitSecs, 0, 30) * 10;

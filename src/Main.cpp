@@ -20,7 +20,7 @@
 #define BUZZ_PIN 16
 
 UIData uiData{};
-ShockDormancyEvent *shockDormancyEvent = new ShockDormancyEvent(SHOCK_PIN, 0);
+ShockDormancyEvent *shockDormancyEvent = new ShockDormancyEvent(SHOCK_PIN);
 Ctrl *twoButtonCtrl = new TwoButtonCtrl(PREVIOUS_BTU_PIN, NEXT_BTU_PIN);
 Core core = Core(BUZZ_PIN,
                  twoButtonCtrl,

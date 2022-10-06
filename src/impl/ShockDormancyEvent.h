@@ -31,10 +31,9 @@ private:
 public:
     /**
   * 初始化停止加热事件 pin模式设置为输入 内部上拉
-  * @param waitSecs 第一次触发引脚电平变化到状态改变需要的时间 => 调节灵敏度 0 ～ 30 0：关闭休眠
   * @param shockPin 震动开关连接的引脚
   */
-    ShockDormancyEvent(uint8_t waitSecs, uint8_t shockPin);
+    explicit ShockDormancyEvent(uint8_t shockPin);
 
     void checkState();
 
