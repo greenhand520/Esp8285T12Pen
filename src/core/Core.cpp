@@ -24,16 +24,14 @@ void Core::setup(uint8_t pwmPin) {
 }
 
 void Core::heat(uint16_t targetTemp) {
-    if (targetTemp == 0) {
-        tempCtrler->stopHeat();
-    } else {
-        // 调温 读取温度前停止加热
-        tempCtrler->stopHeat();
-//        uint16_t temp = tempMeasure->readTemp(10);
-        tempCtrler->heat(tempMeasure->readTemp(10), targetTemp);
-    }
+    // 调温 读取温度前停止加热
+    tempCtrler->stopHeat();
+    float temp = tempMeasure->readTemp(10);
     // 更新UI数据
-    uiData.currentTemp = tempCtrler->getAvgTemp();
+    uiData.currentTemp = temp;
+    if (targetTemp != 0) {
+        tempCtrler->heat(temp, targetTemp);
+    }
 }
 
 void Core::work() {

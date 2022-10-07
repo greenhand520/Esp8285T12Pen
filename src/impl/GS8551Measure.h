@@ -14,7 +14,7 @@ private:
 public:
     explicit GS8551Measure(uint8_t adcPin);
 
-    uint16_t readTemp(uint8_t count) override;
+    float readTemp(uint8_t count) override;
 };
 
 

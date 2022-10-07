@@ -4,7 +4,7 @@
 
 #include "Display.h"
 
-U8G2 SH1107Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin) {
+U8G2 SH1107_12864Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin) {
     if (uiData.settings.isRotate) {
         return U8G2_SH1107_64X128_F_HW_I2C(U8G2_R2, resetPin, sclPin, sdaPin);
     } else {
@@ -12,11 +12,11 @@ U8G2 SH1107Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin) {
     }
 }
 
-//U8G2 SSD1306Driver(uint8_t sdaPin, uint8_t sclPin) {
+//U8G2 SSD1306_12864Driver(uint8_t sdaPin, uint8_t sclPin) {
 //    if (uiData.settings.isRotate) {
-//        return U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C(U8G2_R2, sclPin, sdaPin);
+//        return U8G2_SSD1306_128X64_NONAME_F_HW_I2C(U8G2_R2, U8X8_PIN_NONE, sclPin, sdaPin);
 //    } else {
-//        return U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C(U8G2_R0, sclPin, sdaPin);
+//        return U8G2_SSD1306_128X64_NONAME_F_HW_I2C(U8G2_R0, U8X8_PIN_NONE, sclPin, sdaPin);
 //    }
 //}
 
