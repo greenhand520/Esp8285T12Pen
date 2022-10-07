@@ -4,13 +4,13 @@
 
 #include "Display.h"
 
-//U8G2 SH1107Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin) {
-//    if (uiData.settings.isRotate) {
-//        return U8G2_SH1107_64X128_F_HW_I2C(U8G2_R2, resetPin, sclPin, sdaPin);
-//    } else {
-//        return U8G2_SH1107_64X128_F_HW_I2C(U8G2_R0, resetPin, sclPin, sdaPin);
-//    }
-//}
+U8G2 SH1107Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin) {
+    if (uiData.settings.isRotate) {
+        return U8G2_SH1107_64X128_F_HW_I2C(U8G2_R2, resetPin, sclPin, sdaPin);
+    } else {
+        return U8G2_SH1107_64X128_F_HW_I2C(U8G2_R0, resetPin, sclPin, sdaPin);
+    }
+}
 
 //U8G2 SSD1306Driver(uint8_t sdaPin, uint8_t sclPin) {
 //    if (uiData.settings.isRotate) {
