@@ -26,7 +26,7 @@ Core core = Core(BUZZ_PIN,
                  twoButtonCtrl,
                  shockDormancyEvent,
                  new GS8551Measure(TEMP_ADC_PIN));
-U8G2 u8g2 = screenDriver(SDA_PIN, SCL_PIN, RESET_PIN);
+U8G2 u8g2 = SH1107Driver(SDA_PIN, SCL_PIN, RESET_PIN);
 
 void setup() {
     noInterrupts();
